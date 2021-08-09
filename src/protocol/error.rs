@@ -273,6 +273,9 @@ impl<E: SpecificError> From<E> for Error<E> {
     }
 }
 
+debug_from!(Error<E> => OutOfMemory, crypto::csrng::Error, crypto::hash::Error, crypto::sig::Error, session::Error);
+debug_from!(Error<E: SpecificError> => E);
+
 /// A type that describes a message-specific error.
 ///
 /// This trait is an implementation detail.
