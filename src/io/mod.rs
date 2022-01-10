@@ -34,3 +34,5 @@ pub enum Error {
     /// Indicates that an unspecified, internal failure occurred.
     Internal,
 }
+
+debug_from!(Error);

@@ -30,6 +30,7 @@ use crate::manifest::ManifestType;
 use crate::manifest::Metadata;
 use crate::mem::BumpArena;
 use crate::protocol::wire::WireEnum;
+use crate::Result;
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -185,6 +186,8 @@ impl From<sig::Error> for EncodingError {
         Self::SigError(e)
     }
 }
+
+debug_from!(EncodingError => hash::Error, sig::Error);
 
 impl<E: Element> Container<E> {
     /// Parses a `Container` out of `bytes`.

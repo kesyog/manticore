@@ -18,6 +18,7 @@ use crate::io::ReadZero;
 use crate::io::Write;
 use crate::mem::Arena;
 use crate::mem::OutOfMemory;
+use crate::Result;
 
 /// A type which can be deserialized from the Cerberus wire format.
 ///

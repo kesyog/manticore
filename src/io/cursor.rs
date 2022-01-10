@@ -36,6 +36,7 @@ use core::mem;
 
 use crate::io;
 use crate::io::Write;
+use crate::Result;
 
 #[cfg(doc)]
 use crate::{io::Error, protocol::wire::ToWire};

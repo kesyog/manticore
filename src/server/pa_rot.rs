@@ -27,6 +27,7 @@ use crate::protocol::Req;
 use crate::protocol::Resp;
 use crate::server::Error;
 use crate::session::Session;
+use crate::Result;
 
 use crate::server::handler::prelude::*;
 

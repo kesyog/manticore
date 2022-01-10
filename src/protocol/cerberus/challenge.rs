@@ -18,6 +18,7 @@ use crate::protocol::wire;
 use crate::protocol::wire::FromWire;
 use crate::protocol::wire::ToWire;
 use crate::protocol::CommandType;
+use crate::Result;
 
 protocol_struct! {
     /// A command for challenging an RoT.

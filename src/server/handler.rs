@@ -79,6 +79,7 @@ use crate::protocol::wire::ToWire as _;
 use crate::protocol::Message;
 use crate::protocol::Req;
 use crate::protocol::Resp;
+use crate::Result;
 
 /// A `*`-importable prelude that pulls in only the names that are necessary
 /// to make `Handler` work.

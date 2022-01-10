@@ -10,6 +10,7 @@ use ring::signature::KeyPair as _;
 use ring::signature::RsaPublicKeyComponents;
 
 use crate::crypto::sig;
+use crate::Result;
 
 #[cfg(doc)]
 use crate::crypto;

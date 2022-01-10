@@ -17,6 +17,7 @@ use zerocopy::FromBytes;
 use zerocopy::LayoutVerified;
 
 use crate::mem::align_to;
+use crate::Result;
 
 #[cfg(doc)]
 use core::mem;
@@ -30,6 +31,8 @@ use core::mem;
 /// when it is known that no memory will ever be allocated on the arena.
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct OutOfMemory;
+
+debug_from!(OutOfMemory);
 
 unsafe impl Arena for OutOfMemory {
     fn alloc_raw(&self, layout: Layout) -> Result<&mut [u8], OutOfMemory> {

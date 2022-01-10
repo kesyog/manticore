@@ -27,6 +27,7 @@ use crate::io;
 use crate::io::Read as _;
 use crate::mem::Arena;
 use crate::mem::OutOfMemory;
+use crate::Result;
 
 #[cfg(doc)]
 use crate::mem::ArenaExt;

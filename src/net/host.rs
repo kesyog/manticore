@@ -10,6 +10,7 @@ use crate::io::Cursor;
 use crate::io::ReadZero;
 use crate::io::Write;
 use crate::net;
+use crate::Result;
 
 /// Represents a physical port that can be used to interact with host devices.
 ///

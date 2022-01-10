@@ -19,6 +19,7 @@ use crate::cert;
 use crate::cert::Error;
 use crate::io;
 use crate::io::Read as _;
+use crate::Result;
 
 #[cfg(test)]
 mod test;

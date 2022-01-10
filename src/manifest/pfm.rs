@@ -39,6 +39,7 @@ use crate::manifest::TocEntry;
 use crate::manifest::ValidationTime;
 use crate::mem::misalign_of;
 use crate::mem::Arena;
+use crate::Result;
 
 use crate::mem::ArenaExt as _;
 use crate::protocol::wire::WireEnum as _;

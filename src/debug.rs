@@ -98,29 +98,78 @@ impl<E: fmt::Display> fmt::Display for Error<E> {
 /// impl. We work around this by calling this macro for every Manticore
 /// error definition that has `From` impls.
 macro_rules! debug_from {
-    // An error generic over one type with a single trait bound
+    // Hack to match an error generic over one type with a single trait bound
     ($e:ident<$trait:ident: $bound:path> => $($f:ty),+ $(,)?) => {$(
         impl<$trait: $bound> From<$crate::Error<$f>> for $crate::Error<$e<$trait>> {
             fn from(e: $crate::Error<$f>) -> Self {
                 e.cast()
             }
         }
-    )*};
-    // An error generic over one type
+
+        impl<$trait: $bound> From<$f> for $crate::Error<$e<$trait>> {
+            fn from(e: $f) -> Self {
+                Self::__new(e.into())
+            }
+        }
+    )*
+
+        impl<$trait: $bound> From<$e<$trait>> for $crate::Error<$e<$trait>> {
+            fn from(e: $e<$trait>) -> Self {
+                Self::__new(e.into())
+            }
+        }
+    };
+
+    // Hack to match an error generic over one type
     ($e:ident<$trait:ident> => $($f:ty),+ $(,)?) => {$(
         impl<$trait> From<$crate::Error<$f>> for $crate::Error<$e<$trait>> {
             fn from(e: $crate::Error<$f>) -> Self {
                 e.cast()
             }
         }
-    )*};
+
+        impl<$trait> From<$f> for $crate::Error<$e<$trait>> {
+            fn from(e: $f) -> Self {
+                Self::__new(e.into())
+            }
+        }
+    )*
+
+        impl<$trait> From<$e<$trait>> for $crate::Error<$e<$trait>> {
+            fn from(e: $e<$trait>) -> Self {
+                Self::__new(e.into())
+            }
+        }
+    };
+
     ($e:ty => $($f:ty),+ $(,)?) => {$(
         impl From<$crate::Error<$f>> for $crate::Error<$e> {
             fn from(e: $crate::Error<$f>) -> Self {
                 e.cast()
             }
         }
-    )*};
+
+        impl From<$f> for $crate::Error<$e> {
+            fn from(e: $f) -> Self {
+                Self::__new(e.into())
+            }
+        }
+    )*
+
+        impl From<$e> for $crate::Error<$e> {
+            fn from(e: $e) -> Self {
+                Self::__new(e.into())
+            }
+        }
+    };
+
+    ($e:ty) => {
+        impl From<$e> for $crate::Error<$e> {
+            fn from(e: $e) -> Self {
+                Self::__new(e.into())
+            }
+        }
+    };
 }
 
 /// Checks a condition, logging if it fails.
@@ -131,12 +180,12 @@ macro_rules! check {
     ($cond:expr, $error:expr) => {
         if !$cond {
             let error = $error;
-            fail!(
+            Err(fail!(
                 error,
                 "check failure: `{}`; returned {:?}",
                 stringify!($cond),
                 error,
-            )?;
+            ))?;
         }
     };
 }
@@ -150,12 +199,12 @@ macro_rules! check {
 macro_rules! fail {
     ($error:expr, $($format:tt)+) => {{
         error!($($format)+);
-        Err($crate::debug::Error::__new($error))
+        $crate::debug::Error::__new($error)
     }};
     ($error:expr) => {{
         let error = $error;
         error!("generated error: `{:?}`", error);
-        Err($crate::debug::Error::__new(error))
+        $crate::debug::Error::__new(error)
     }};
 }
 

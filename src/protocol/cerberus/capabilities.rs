@@ -23,6 +23,7 @@ use crate::protocol::wire::FromWire;
 use crate::protocol::wire::ToWire;
 use crate::protocol::wire::WireEnum;
 use crate::protocol::CommandType;
+use crate::Result;
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};

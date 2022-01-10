@@ -10,6 +10,7 @@ use ring::digest;
 use ring::hmac;
 
 use crate::crypto::hash;
+use crate::Result;
 
 #[cfg(doc)]
 use crate::crypto;

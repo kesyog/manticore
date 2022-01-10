@@ -13,6 +13,7 @@ use ring::hmac;
 
 use crate::crypto::hash;
 use crate::session;
+use crate::Result;
 
 /// A [`ring`]-based [`session::Session`].
 pub struct Session {

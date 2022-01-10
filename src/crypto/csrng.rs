@@ -4,6 +4,8 @@
 
 //! Cryptographic random numbers.
 
+use crate::Result;
+
 /// An error returned by a CSRNG.
 #[derive(Copy, Clone, PartialEq, Eq, Debug)]
 pub enum Error {

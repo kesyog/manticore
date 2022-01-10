@@ -10,6 +10,7 @@
 
 use crate::crypto::sig;
 use crate::io;
+use crate::Result;
 
 // Note that all parsers leverage Brian Smith's `untrusted` crate to ensure
 // we don't walk off the end of the buffer. We may wind up building this

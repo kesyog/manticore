@@ -19,6 +19,7 @@ use crate::protocol::wire::ToWire;
 use crate::protocol::CommandType;
 use crate::protocol::Message;
 use crate::session;
+use crate::Result;
 
 #[cfg(doc)]
 use crate::protocol;
@@ -274,7 +275,22 @@ impl<E: SpecificError> From<E> for Error<E> {
 }
 
 debug_from!(Error<E> => OutOfMemory, crypto::csrng::Error, crypto::hash::Error, crypto::sig::Error, session::Error);
-debug_from!(Error<E: SpecificError> => E);
+
+// We'd like to use `debug_from!(Error<E: SpecificError> => E` but because we need a separate
+// invocation of debug_from! (with the current implementation of the macro) to match that syntax,
+// it leads to compiler errors due to duplicate From implementations. Instead we'll manually
+// implement debug_from! here and omit the problematic From implementation.
+impl<E: SpecificError> From<crate::Error<E>> for crate::Error<Error<E>> {
+    fn from(e: crate::Error<E>) -> Self {
+        e.cast()
+    }
+}
+
+impl<E: SpecificError> From<E> for crate::Error<Error<E>> {
+    fn from(e: E) -> Self {
+        Self::__new(e.into())
+    }
+}
 
 /// A type that describes a message-specific error.
 ///

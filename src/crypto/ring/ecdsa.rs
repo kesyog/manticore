@@ -10,6 +10,7 @@ use ring::signature::EcdsaVerificationAlgorithm as EcdsaAlgo;
 use ring::signature::VerificationAlgorithm as _;
 
 use crate::crypto::sig;
+use crate::Result;
 
 /// A `ring`-based [`sig::Verify`] for DER-encoded ECDSA using the P-256 curve.
 pub struct VerifyP256 {

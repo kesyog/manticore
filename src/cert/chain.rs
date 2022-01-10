@@ -13,6 +13,7 @@ use crate::cert::Cert;
 use crate::cert::CertFormat;
 use crate::cert::Error;
 use crate::crypto::sig;
+use crate::Result;
 
 /// A trust chain collection.
 ///

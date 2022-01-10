@@ -27,6 +27,7 @@ use crate::manifest::Manifest;
 use crate::manifest::ManifestType;
 use crate::mem::Arena;
 use crate::protocol::wire::WireEnum;
+use crate::Result;
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};

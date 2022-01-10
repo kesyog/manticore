@@ -10,6 +10,7 @@ use crate::cert::Cert;
 use crate::cert::Error;
 use crate::cert::Name;
 use crate::crypto::sig;
+use crate::Result;
 
 #[macro_use]
 mod der;

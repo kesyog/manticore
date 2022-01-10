@@ -49,6 +49,7 @@ macro_rules! protocol_struct {
             use $crate::protocol::Command;
             use $crate::protocol::error::NoSpecificError;
             use $crate::protocol::Message;
+            use $crate::Result;
 
             #[cfg(feature = "arbitrary-derive")]
             use libfuzzer_sys::arbitrary::{self, Arbitrary};

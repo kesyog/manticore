@@ -17,6 +17,7 @@ use crate::io;
 use crate::io::endian::LeInt;
 use crate::mem::misalign_of;
 use crate::mem::Arena;
+use crate::Result;
 
 #[cfg(doc)]
 use crate::mem::ArenaExt;

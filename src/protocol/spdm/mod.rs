@@ -8,6 +8,7 @@ use crate::io::Read;
 use crate::io::ReadInt as _;
 use crate::io::Write;
 use crate::protocol::wire;
+use crate::Result;
 
 pub mod get_version;
 pub use get_version::GetVersion;

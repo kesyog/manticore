@@ -16,6 +16,7 @@
 //! is a sequence of reads in the same order.
 
 use crate::io;
+use crate::Result;
 
 /// A queue-like buffer of bits within a byte.
 ///

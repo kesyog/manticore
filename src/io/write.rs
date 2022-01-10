@@ -8,6 +8,7 @@ use core::mem;
 
 use crate::io;
 use crate::io::endian::LeInt;
+use crate::Result;
 
 /// Represents a place that bytes can be written to, such as a `&[u8]`.
 ///

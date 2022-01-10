@@ -23,6 +23,7 @@ use core::cmp::PartialOrd;
 use core::convert::TryInto as _;
 
 use crate::cert::Error;
+use crate::Result;
 
 #[cfg(test)]
 #[macro_use]
